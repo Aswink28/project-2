@@ -31,6 +31,11 @@ function boxClicked(e){
             winning_blocks.map(box => boxes[box].style.backgroundColor=winnnerIndicator)
             return
         }
+         if (isTie()) { // Check for a tie
+            PlayerText.innerText = "It's a tie!";
+            restart(); // Restart the game
+            return;
+        }
 
         currentPlayer = currentPlayer ==X_TEXT ? O_TEXT:X_TEXT
     }
@@ -46,6 +51,9 @@ const winningCombos = [
     [1,4,7],
     [2,5,8]
 ]
+function isTie() {
+    return spaces.every(space => space !== null); // Check if all spaces are filled
+}
 function playerHasWon(){
 
     for (const condition of winningCombos) {
